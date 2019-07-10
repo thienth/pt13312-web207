@@ -13,4 +13,35 @@ export class AppComponent {
     address: 'Ha Noi',
     hometown: 'Thanh Hoa',
   };
+
+   Heroes = [
+    { id: 11, name: 'Dr Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+    { id: 15, name: 'Magneta' },
+    { id: 16, name: 'RubberMan' },
+    { id: 17, name: 'Dynama' },
+    { id: 18, name: 'Dr IQ' },
+    { id: 19, name: 'Magma' },
+    { id: 20, name: 'Tornado' }
+  ];
+
+   removeHero = (id) => {
+     this.Heroes = this.Heroes.filter(x => x.id !== id);
+   }
+
+   addHero = (event) => {
+     if (event.keyCode === 13) {
+     const idArr = this.Heroes.map(item => item.id);
+     const idMax = Math.max(...idArr);
+     const hero = {
+       id: idMax + 1,
+       name: event.target.value,
+     };
+     this.Heroes.push(hero);
+     event.target.value = '';
+   }}
+
 }
+
