@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pt13312-web207';
   user = {
-    name: 'bo',
+    name: 'Nguyen Van Bo',
     age: 21,
-    address: '',
-    hometown: '',
+    address: 'Ha Noi',
+    hometown: 'Thanh Hoa',
   };
 }
