@@ -34,6 +34,29 @@ export class AppComponent {
 		)
 	}
 
+	addHero = (event) => {
+		// neu nhan phim enter
+		if(event.keyCode === 13){
+			// di tim so id lon nhat
+			let maxId = 0;
+			for (var i = 0; i < this.heroList.length; ++i) {
+				if(this.heroList[i].id >= maxId){
+					maxId = this.heroList[i].id;
+				}
+			}
+
+			let item = {
+				id: maxId+1,
+				name: event.target.value
+			}
+
+			// add phan tu moi vao mang
+			this.heroList.push(item);
+			// xoa trang text trong the input
+			event.target.value = "";
+		}
+	}
+
 
 
 

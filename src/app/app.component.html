@@ -4,6 +4,9 @@
 <p>Địa chỉ: {{ user.address }}</p>
 <p>Quê quán: {{ user.hometown }}</p>
 
+Tên hero mới: <input 
+				(keydown)="addHero($event)"
+				type="text">
 <ul>
 	<li 
 		(click)="removeHero(hero.id)"
