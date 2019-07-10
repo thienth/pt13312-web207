@@ -1,4 +1,13 @@
-<h3>Ten: {{user.name}}</h3>
-<h3>Tuoi: {{user.age}}</h3>
-<h3>diachi: {{user.hometown}}</h3>
-<h3>choohienay: {{user.address}}</h3>
+<h2>Thông tin cá nhân:</h2>
+<p>Tên: {{ user.name }}</p>
+<p>Tuổi: {{ user.age }}</p>
+<p>Địa chỉ: {{ user.address }}</p>
+<p>Quê quán: {{ user.hometown }}</p>
+
+<ul>
+	<li 
+		(click)="removeHero(hero.id)"
+		*ngFor="let hero of heroList">
+		{{hero.id}} - {{hero.name}}
+	</li>
+</ul>
