@@ -1,2 +1,15 @@
-<h2>PT13312 - Frontend Framework</h2>
-<h3>FPT - Polytechnic</h3>
+<h1>Thông tin cá nhân</h1>
+<p>Tên: {{user.name}}</p>
+<p>Tuổi: {{user.age}}</p>
+<p>Địa chỉ: {{user.address}}</p>
+<p>Quê quán: {{user.hometown}}</p>
+Tên hero mới:
+<input (keydown)="addHero($event)"
+        type="text"/>
+<ul>
+    <li
+            (click)="removeHero(hero.id)"
+            *ngFor="let hero of heroList">
+        {{ hero.id }} - {{ hero.name }}
+    </li>
+</ul>
