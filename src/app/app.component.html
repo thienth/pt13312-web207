@@ -12,16 +12,19 @@
 <p>Ten: {{user.name}}</p>
 <p>Dia chi: {{user.address}}</p>
 <p>Tuoi: {{user.age}}</p>
-
+<p>Ngay sinh {{user.birth | date}}</p>
+<p>Bank: {{user.bank | currency}}</p>
 Ten hero moi:
 <label>
   <input
     (keypress)="addHero($event)"
-    type="text">
+    type="text" value="{{heroTmp.name}}">
 </label>
 <ul>
-  <li (click) = "removeHero(hero.id)" *ngFor="let hero of Heroes">
+  <li *ngFor="let hero of Heroes">
     {{hero.id}} - {{hero.name}}
+    <button (click) = "editHero(hero)" >edit</button>
+    <button (click) = "removeHero(hero.id)" >remove</button>
   </li>
 </ul>
 </body>

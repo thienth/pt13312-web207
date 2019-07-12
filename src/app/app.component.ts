@@ -10,6 +10,8 @@ export class AppComponent {
   user = {
     name: 'Nguyen Van Bo',
     age: 21,
+    birth: new Date(1998, 1, 28),
+    bank: 30,
     address: 'Ha Noi',
     hometown: 'Thanh Hoa',
   };
@@ -27,6 +29,13 @@ export class AppComponent {
     { id: 20, name: 'Tornado' }
   ];
 
+   heroTmp = {
+     id: 0,
+     name: ''
+   } ;
+   editHero = (hero) => {
+     this.heroTmp = {...hero};
+    }
    removeHero = (id) => {
      this.Heroes = this.Heroes.filter(x => x.id !== id);
    }
@@ -44,4 +53,3 @@ export class AppComponent {
    }}
 
 }
-
