@@ -9,10 +9,13 @@ export class AppComponent {
 	title = 'pt13312-web207';
 
 	user = {
-		name: 'thienth',
+		name: 'tran huu thien',
 		age: 30,
+		avatar: "http://tieuhoc.daytot.vn/uploads/tieuhoc/con-cho-de-thuong.jpg",
+		birthDate: new Date(1991, 2, 3),
 		address: '15 dong quan',
-		hometown: 'nam dinh'
+		hometown: 'nam dinh',
+		bank: 30
 	}
 
   	heroList = [
@@ -27,6 +30,18 @@ export class AppComponent {
 	  { id: 19, name: 'Magma' },
 	  { id: 20, name: 'Tornado' }
 	];
+
+	heroTmp = {
+		id: 0,
+		name: ""
+	}
+
+	update = (hero) => {
+		this.heroTmp = {...hero};
+	}
+	save = () => {
+		console.log(this.heroTmp)
+	}
 
 	removeHero = (heroId) => {
 		this.heroList = this.heroList.filter(
