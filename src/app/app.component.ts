@@ -11,8 +11,11 @@ export class AppComponent {
   user = {
     name: 'Quang',
     age: '23',
+    birthDate: new Date(1996, 3, 6),
+    avatar: 'https://images-na.ssl-images-amazon.com/images/I/81UbyXk3DAL._SL1500_.jpg',
     address: 'ktx mỹ đình',
-    hometown: 'phú thọ'
+    homeTown: 'phú thọ',
+    bank: '100'
   };
   heroList = [
     { id: 11, name: 'Dr Nice' },
@@ -26,26 +29,53 @@ export class AppComponent {
     { id: 19, name: 'Magma' },
     { id: 20, name: 'Tornado' }
   ];
+  editingHero = {
+    id: 0,
+    name: ''
+  };
+  save = () => {
+    this.editingHero.id === 0 ? this.addHero(this.editingHero) : this.saveEditHero(this.editingHero);
+  }
+  clearInput = () => {
+    this.editingHero = {
+      id: 0,
+      name: ''
+    };
+  }
+  editHero = (hero) => {
+    this.editingHero = {...hero};
+  };
   removeHero = (heroId) => {
     this.heroList = this.heroList.filter(
         (item) => item.id !== heroId
     );
   }
-  addHero = (event) => {
-    if (event.key === 'Enter') {
-      let maxId = 0;
-      for (let i = 0; i < this.heroList.length; ++i) {
-        if (this.heroList[i].id >= maxId) {
-          maxId = this.heroList[i].id;
-        }
+  saveEditHero = (hero) => {
+    const newHeroList = this.heroList.map(item => {
+      if (item.id === hero.id) {
+        item.name = hero.name
       }
-      let item = {
-        id: maxId + 1,
-        name: event.target.value
-      };
-      this.heroList.push(item);
-
-      event.target.value = "";
+      return item;
+    });
+    this.heroList = [...newHeroList];
+  }
+  addHero = (event) => {
+    let maxId = 0;
+    for (let i = 0; i < this.heroList.length; ++i) {
+      if (this.heroList[i].id >= maxId) {
+        maxId = this.heroList[i].id;
+      }
+    }
+    const item = {
+      id: maxId + 1,
+      name: event.name
+    };
+    this.heroList.push(item);
+    this.editingHero = {
+      ...this.editingHero,
+      id: 0,
+      name: ''
     }
   }
+
 }

@@ -1,15 +1,28 @@
 <h1>Thông tin cá nhân</h1>
+<div>
+    <img [src]="user.avatar" alt="hehehe" width="200px">
+</div>
 <p>Tên: {{user.name}}</p>
 <p>Tuổi: {{user.age}}</p>
-<p>Địa chỉ: {{user.address}}</p>
-<p>Quê quán: {{user.hometown}}</p>
-Tên hero mới:
-<input (keydown)="addHero($event)"
-        type="text"/>
+<p>Ngày sinh: {{user.birthDate | date | uppercase}}</p>
+<p>Địa chỉ: {{user.address | uppercase}}</p>
+<p>Quê quán: {{user.homeTown}}</p>
+<p>Tài sản: {{user.bank | currency: VND}}</p>
+
+<label for="inputAvt">Tên hero mới:</label>
+<input
+        (keyup)="editingHero.name = $event.target.value"
+        id="inputAvt"
+        type="text"
+        value="{{editingHero.name}}"
+/>
+<button (click)="clearInput()">Clear</button>
+<button (click)="save()">Save</button>
 <ul>
     <li
-            (click)="removeHero(hero.id)"
             *ngFor="let hero of heroList">
         {{ hero.id }} - {{ hero.name }}
+        <button type="button" (click)="editHero(hero)">Edit</button>
+        <button type="button" (click)="removeHero(hero.id)">Delete</button>
     </li>
 </ul>
