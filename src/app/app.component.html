@@ -1,28 +1,129 @@
-<h1>Thông tin cá nhân</h1>
-<div>
-    <img [src]="user.avatar" alt="hehehe" width="200px">
+<h1>Sản phẩm</h1>
+<div class="my-4">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group">
+                <label for="inputAddress">Tên sản phẩm</label>
+                <input
+                        (keyup)="editingProduct.product_name = $event.target.value"
+                        id="inputAddress"
+                        type="text"
+                        value="{{editingProduct.product_name}}"
+                        class="form-control"
+                        placeholder="Tên sản phẩm">
+            </div>
+            <div class="form-group">
+                <label for="inputCate">Danh mục</label>
+                <select
+                        id="inputCate"
+                        class="form-control"
+                        [value]="editingProduct.cate_id"
+                        (change)="editingProduct.cate_id = $event.target.value"
+                >
+                    <option value=0>Chọn danh mục</option>
+                    <option value=1>Cate 1</option>
+                    <option value=2>Cate 2</option>
+                    <option value=3>Cate 3</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="list_price">Giá gốc</label>
+                    <input
+                            (keyup)="editingProduct.list_price = $event.target.value"
+                            type="text"
+                            value="{{editingProduct.list_price}}"
+                            class="form-control"
+                            id="list_price"
+                            placeholder="Giá gốc">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sell_price">Giá bán</label>
+                    <input
+                            (keyup)="editingProduct.sell_price = $event.target.value"
+                            type="text"
+                            value="{{editingProduct.sell_price}}"
+                            class="form-control"
+                            id="sell_price"
+                            placeholder="Giá bán">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRating">Đánh giá</label>
+                <input
+                        (keyup)="editingProduct.rating = $event.target.value"
+                        id="inputRating"
+                        type="text"
+                        value="{{editingProduct.rating}}"
+                        class="form-control"
+                        placeholder="Đánh giá">
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="gridCheck"
+                            (change)="editingProduct.status = $event.target.checked"
+                            [value]="editingProduct.status"
+                            [checked]="editingProduct.status"
+                    >
+                    <label class="form-check-label" for="gridCheck">
+                        {{ editingProduct.status === true ? 'Active' : 'Inactive'}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group text-center">
+                <label for="image">Ảnh sản phẩm</label>
+                <div class='text-center mb-4'>
+                    <img [src]='editingProduct.image' width="200px"/>
+                </div>
+                <input
+                        type="file"
+                        id="image"
+                        (change)="readUrl($event)"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button (click)="save()" class="btn btn-success mx-1">Save</button>
+        <button (click)="clearInput()" class="btn btn-secondary mx-1">Clear</button>
+    </div>
 </div>
-<p>Tên: {{user.name}}</p>
-<p>Tuổi: {{user.age}}</p>
-<p>Ngày sinh: {{user.birthDate | date | uppercase}}</p>
-<p>Địa chỉ: {{user.address | uppercase}}</p>
-<p>Quê quán: {{user.homeTown}}</p>
-<p>Tài sản: {{user.bank | currency: VND}}</p>
-
-<label for="inputAvt">Tên hero mới:</label>
-<input
-        (keyup)="editingHero.name = $event.target.value"
-        id="inputAvt"
-        type="text"
-        value="{{editingHero.name}}"
-/>
-<button (click)="clearInput()">Clear</button>
-<button (click)="save()">Save</button>
-<ul>
-    <li
-            *ngFor="let hero of heroList">
-        {{ hero.id }} - {{ hero.name }}
-        <button type="button" (click)="editHero(hero)">Edit</button>
-        <button type="button" (click)="removeHero(hero.id)">Delete</button>
-    </li>
-</ul>
+<div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+    <table class="table table-striped table-hover">
+        <caption>List of products</caption>
+        <thead class="thead-dark|thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Giá gốc</th>
+            <th scope="col">Giá bán</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Đánh giá</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+            <th scope="row">{{ product.id }}</th>
+            <td><img [src]="product.image" [alt]="product.image" width="150px"/></td>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.cate_id }}</td>
+            <td>{{ product.list_price }}</td>
+            <td>{{ product.sell_price }}</td>
+            <td>{{ product.status === true ? 'Active' : 'Inactive'}}</td>
+            <td>{{ product.rating }}</td>
+            <td>
+                <button type="button" (click)="editProduct(product)" class="btn btn-sm btn-warning mx-1">Edit</button>
+                <button type="button" (click)="removeProduct(product.id)" class="btn btn-sm btn-danger">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
