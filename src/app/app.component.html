@@ -1,4 +1,9 @@
-<h2 *ngIf="categories == undefined">Loading...</h2>
-<div *ngIf="categories != undefined">
-	{{categories.length}}
-</div>
+<h2>Deleted Id: {{deletedCate.id}}</h2>
+<h2>Deleted Name: {{deletedCate.name}}</h2>
+<h2>Deleted Image: {{deletedCate.image}}</h2>
+
+<app-cate-item 
+		*ngFor="let item of categories" 
+		[cate]="item"
+		(onRemoveCate)="removeSelectedCate($event)"
+		></app-cate-item>

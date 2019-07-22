@@ -10,12 +10,19 @@ export class AppComponent implements OnInit{
 	constructor(private cateService: CategoryService){
 
 	}
+
+	deletedCate = {
+		id: -1,
+		name: "deleted",
+		image: "deleted Image"
+	};
 	ngOnInit(){
 		this.cateService.getListCategory()
 						.subscribe((data) => {
-							console.log(data);
 							this.categories = data;
 						});
-		console.log('loading...');
+	}
+	removeSelectedCate(cate){
+		this.deletedCate = {...cate};
 	}
 }
