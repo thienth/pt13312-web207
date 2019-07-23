@@ -11,11 +11,6 @@ export class AppComponent implements OnInit{
 
 	}
 
-	deletedCate = {
-		id: -1,
-		name: "deleted",
-		image: "deleted Image"
-	};
 	ngOnInit(){
 		this.cateService.getListCategory()
 						.subscribe((data) => {
@@ -23,6 +18,6 @@ export class AppComponent implements OnInit{
 						});
 	}
 	removeSelectedCate(cate){
-		this.deletedCate = {...cate};
+
 	}
 }
