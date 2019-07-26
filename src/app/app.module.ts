@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { CateItemComponent } from './components/cate-item/cate-item.component';
 import { HomeComponent } from './screens/home/home.component';
 import { DetailCateComponent } from './screens/detail-cate/detail-cate.component';
+import { CateAddComponent } from './screens/cate-add/cate-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CateItemComponent,
     HomeComponent,
-    DetailCateComponent
+    DetailCateComponent,
+    CateAddComponent
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,9 @@ export class CategoryService {
   	let removeUrl = `${this.apiUrl}/${cateId}`;
   	return this.http.delete<any>(removeUrl);
   }
+
+  public addCategory(data){
+    
+    return this.http.post<any>(this.apiUrl, data);
+  }
 }

@@ -1,4 +1,8 @@
 <div class="row">
+	<div class="col-12 cate-unit">
+		<a routerLink="/category/add" class="btn btn-sm btn-success">Thêm mới</a>
+	</div>
+
 	<div class="col-4 cate-unit" *ngFor="let cate of categories">
 		<div class="text-center">
 			<img [src]="cate.image" class="img-fluid">
