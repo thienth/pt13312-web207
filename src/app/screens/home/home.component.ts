@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CategoryService} from '../../services/category.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private cateService: CategoryService) { }
+  categories = [];
   ngOnInit() {
+  	this.cateService.getListCategory()
+  					.subscribe(data => {
+  						this.categories = data;
+  					});
   }
-
+  removeCategory(cate){
+  	let conf = confirm(`Bạn có chắc chắn muốn xóa danh mục ${cate.name} ?`)
+  	if(conf){
+  		this.cateService.removeCategory(cate.id)
+			.subscribe(data => {
+				this.categories = this.categories
+						.filter(item => item.id != cate.id);
+			})
+  	}
+  	
+  }
 }

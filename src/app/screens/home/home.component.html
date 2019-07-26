@@ -1,8 +1,17 @@
-<p>home works!</p>
-<a routerLink="/detail/1">Chi tiet</a>
-<br>
-<a routerLink="/detail/2">Chi tiet 2</a>
-<br>
-<a routerLink="/detail/3">Chi tiet 3</a>
-<br>
-<a routerLink="/detail/4">Chi tiet 4</a>
+<div class="row">
+	<div class="col-4 cate-unit" *ngFor="let cate of categories">
+		<div class="text-center">
+			<img [src]="cate.image" class="img-fluid">
+		</div>
+		<h5>
+			<a href="" title="">{{cate.name}}</a>
+		</h5>
+		<div class="text-center">
+			<a routerLink="category-edit/{{cate.id}}" class="btn btn-sm btn-info">Sửa</a>
+			&nbsp;
+			<button type="button" 
+				(click)="removeCategory(cate)"
+				class="btn btn-sm btn-danger">Xóa</button>
+		</div>
+	</div>
+</div>
