@@ -1,0 +1,17 @@
+<div class="row">
+    <div>
+        <a href="" routerLink="category/add" class="btn btn-info"> ADD NEW</a>
+    </div>
+    <div class="col-3 cate-unit" *ngFor="let cate of categories">
+        <div>
+            <img [src]="cate.image" alt="" class="img-thumbnail">
+        </div>
+        <h5>
+            <a href="">{{cate.name}}</a>
+        </h5>
+        <div class="text-center">
+            <a href="" routerLink="cate-edit/{{cate.id}}" class="btn btn-info"> Edit</a>
+            <button type="button" (click)="removeCategory(cate)" class="btn btn-danger">Remove</button>
+        </div>
+    </div>
+</div>
