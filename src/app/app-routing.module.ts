@@ -7,6 +7,8 @@ import {DetailCateComponent}
 		from './screens/detail-cate/detail-cate.component';
 import {CateAddComponent} 
 		from './screens/cate-add/cate-add.component';
+import {CateEditComponent} 
+		from './screens/cate-edit/cate-edit.component';
 
 const routes: Routes = [
 	{
@@ -16,6 +18,10 @@ const routes: Routes = [
 	{
 		path: "category/add",
 		component: CateAddComponent
+	},
+	{
+		path: "category/edit/:id",
+		component: CateEditComponent
 	},
 	{
 		path: "detail/:id",

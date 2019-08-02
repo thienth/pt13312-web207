@@ -13,6 +13,10 @@ export class CategoryService {
   	return this.http.get<any[]>(this.apiUrl);
   }
 
+  public getCategoryById(cateId){
+    return this.http.get<any>(`${this.apiUrl}/${cateId}`);
+  }
+
   public removeCategory(cateId){
   	let removeUrl = `${this.apiUrl}/${cateId}`;
   	return this.http.delete<any>(removeUrl);

@@ -10,6 +10,7 @@ import { CateItemComponent } from './components/cate-item/cate-item.component';
 import { HomeComponent } from './screens/home/home.component';
 import { DetailCateComponent } from './screens/detail-cate/detail-cate.component';
 import { CateAddComponent } from './screens/cate-add/cate-add.component';
+import { CateEditComponent } from './screens/cate-edit/cate-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CateAddComponent } from './screens/cate-add/cate-add.component';
     CateItemComponent,
     HomeComponent,
     DetailCateComponent,
-    CateAddComponent
+    CateAddComponent,
+    CateEditComponent
   ],
   imports: [
     BrowserModule,
