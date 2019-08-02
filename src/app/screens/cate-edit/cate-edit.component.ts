@@ -18,7 +18,7 @@ export class CateEditComponent implements OnInit {
   	) { }
   cateForm = new FormGroup({
   	name: new FormControl(''),
-	image: new FormControl()
+	image: new FormControl('')
   });
   cateId: string;
   ngOnInit() {
