@@ -1,0 +1,15 @@
+products
+
+id int pk ai
+name varchar
+image varchar
+price float
+detail text
+amount int
+status int
+cate_id int
+
+tạo products resource trong mock api
+Quan hệ
+1 categories - n products
+Thêm sửa, xóa, hiển thị danh sách products theo danh mục
