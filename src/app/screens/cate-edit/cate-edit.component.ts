@@ -31,5 +31,12 @@ export class CateEditComponent implements OnInit {
   						});
   					});
   }
+  saveCategory(){
+  	this.cateService.editCategory(this.cateId, this.cateForm.value)
+  					.subscribe(data => {
+  						console.log(data);
+  						this.router.navigate(['/']);
+  					})
+  }
 
 }

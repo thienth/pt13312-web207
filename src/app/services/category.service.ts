@@ -23,7 +23,10 @@ export class CategoryService {
   }
 
   public addCategory(data){
-    
     return this.http.post<any>(this.apiUrl, data);
+  }
+  public editCategory(cateId, data){
+    let url = `${this.apiUrl}/${cateId}`;
+    return this.http.put<any>(url, data);
   }
 }
