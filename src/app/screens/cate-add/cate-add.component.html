@@ -6,21 +6,19 @@
 		<div class="form-group">
 			<label for="">Tên danh mục</label>
 			<input type="text" 
-					(keyup)="category.name = $event.target.value"
-					value="{{category.name}}" 
+					[formControl]="category.name"
 					class="form-control">
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="category.image == ''" class="img-fluid">
-				<img [src]="category.image" *ngIf="category.image != ''" class="img-fluid">
+				<img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="category.image.value == ''" class="img-fluid">
+				<img [src]="category.image.value" *ngIf="category.image.value != ''" class="img-fluid">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="">Ảnh danh mục</label>
 			<input type="text" 
-					(keyup)="category.image = $event.target.value"	
-					value="{{category.image}}" 
+					[formControl]="category.image" 
 					class="form-control">
 		</div>
 		<div class="text-center">
@@ -30,4 +28,8 @@
 			<a routerLink="/" class="btn btn-sm btn-danger">Hủy</a>
 		</div>
 	</div>
+</div>
+<div>
+	{{category.name.value | json}}
+	{{category.image.value | json}}
 </div>
