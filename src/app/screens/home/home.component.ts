@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import{CategoryService} from '../../services/category.service';
+import {CategoryService} from '../../services/category.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,13 +8,13 @@ import{CategoryService} from '../../services/category.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private cateService:CategoryService) { }
-  categories=[];
+  constructor(private cateService: CategoryService) { }
+  categories = [];
   ngOnInit() {
-    this.cateService.getListCategory().subscribe((data) => {
-      console.log(data);
-      this.categories = data;
-    });
+  	this.cateService.getListCategory()
+  					.subscribe(data => {
+  						this.categories = data;
+  					});
   }
   removeCategory(cate){
   	let conf = confirm(`Bạn có chắc chắn muốn xóa danh mục ${cate.name} ?`)
@@ -26,6 +27,4 @@ export class HomeComponent implements OnInit {
   	}
   	
   }
-  
-
 }

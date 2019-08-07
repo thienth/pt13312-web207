@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {CategoryService} from '../../services/category.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-cate-edit',
@@ -10,31 +12,31 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class CateEditComponent implements OnInit {
 
   constructor(
-    private cateService: CategoryService,
-    private router:Router,
-    private route:ActivatedRoute,
-    ) { }
-  category={
-    name : "",
-    image : ""
+  		private route: ActivatedRoute,
+  		private router: Router,
+  		private cateService: CategoryService
+  	) { }
+  cateForm = new FormGroup({
+  	name: new FormControl(''),
+	image: new FormControl('')
+  });
+  cateId: string;
+  ngOnInit() {
+  	this.cateId = this.route.snapshot.params.id;
+  	this.cateService.getCategoryById(this.cateId)
+  					.subscribe(data => {
+  						this.cateForm.setValue({
+  							name: data.name,
+  							image: data.image
+  						});
+  					});
   }
-  id="0";
-  ngOnInit() {this.id= this.route.snapshot.params.id;
-    this.cateService.getListCategory().subscribe( data =>{
-      console.log(data);
-      this.category=data.find((item)=>item.id===this.id);
-      // console.log(this.category);
-    });
-    
+  saveCategory(){
+  	this.cateService.editCategory(this.cateId, this.cateForm.value)
+  					.subscribe(data => {
+  						console.log(data);
+  						this.router.navigate(['/']);
+  					})
   }
-  updateCategory(){
-    this.cateService.updateCategory(this.category).subscribe( data=>{
-      console.log(data);
-      this.category={
-        name:"",
-        image:""
-      };
-      this.router.navigate(['/']);
-    })
-  }
+
 }
