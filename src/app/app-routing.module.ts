@@ -11,6 +11,11 @@ import {CateEditComponent}
 		from './screens/cate-edit/cate-edit.component';
 import { ProductAddComponent } 
 		from './screens/product-add/product-add.component';
+import { ProductEditComponent } 
+		from './screens/product-edit/product-edit.component';
+
+
+
 
 
 const routes: Routes = [
@@ -28,8 +33,13 @@ const routes: Routes = [
 	  }
 	  ,
 	{
-		path: "",
+		path: "category/:cateId/add",
 		component: ProductAddComponent
+	},
+	
+	{
+		path: "category/:cateId/edit/:productId",
+		component: ProductEditComponent
 	},
 	{
 		path: "category/edit/:id",
