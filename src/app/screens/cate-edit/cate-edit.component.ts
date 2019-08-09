@@ -16,7 +16,7 @@ export class CateEditComponent implements OnInit {
   		private router: Router,
   		private cateService: CategoryService
   	) { }
-  
+
   cateForm = new FormGroup({
   	name: new FormControl('', [
       Validators.required,
@@ -44,11 +44,14 @@ export class CateEditComponent implements OnInit {
   					});
   }
   saveCategory(){
-  	this.cateService.editCategory(this.cateId, this.cateForm.value)
-  					.subscribe(data => {
-  						console.log(data);
-  						this.router.navigate(['/']);
-  					})
+    if(this.cateForm.valid){
+      this.cateService.editCategory(this.cateId, this.cateForm.value)
+            .subscribe(data => {
+              console.log(data);
+              this.router.navigate(['/']);
+            })
+    }
+  	
   }
 
 }
