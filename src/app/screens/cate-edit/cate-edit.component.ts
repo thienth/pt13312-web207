@@ -17,9 +17,17 @@ export class CateEditComponent implements OnInit {
   		private cateService: CategoryService
   	) { }
   cateForm = new FormGroup({
-  	name: new FormControl(''),
-	image: new FormControl('')
+  	name: new FormControl('',[
+		  Validators.required,
+		  Validators.minLength(4),
+		  Validators.maxLength(20)
+	  ]),
+	image: new FormControl('',[
+		Validators.required
+	])
   });
+	get name() { return this.cateForm.get('name'); }
+	get image() { return this.cateForm.get('image'); }
   cateId: string;
   ngOnInit() {
   	this.cateId = this.route.snapshot.params.id;

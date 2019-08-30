@@ -20,7 +20,7 @@ export class ProductsService {
 
   public addProduct(data) {
     console.log(data);
-    return this.http.post<any>(`${this.apiUrl}/${data.cate_id}/products`, data);
+    return this.http.post<any>(`${this.apiUrl}${data.cate_id}/products`, data);
   }
 
   public editProduct(cateId, productId, data) {

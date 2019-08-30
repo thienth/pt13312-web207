@@ -3,45 +3,87 @@
         <div class="text-center">
             <h3>Tạo mới sản phẩm</h3>
         </div>
-        <div class="form-group">
-            <label for="">Tên sản phẩm</label>
-            <input type="text" [formControl]="product.name" class="form-control">
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="product.image.value == ''" class="img-fluid">
-                <img [src]="product.image.value" *ngIf="product.image.value != ''" class="img-fluid">
+        <form [formGroup]="product">
+            <div class="form-group">
+                <label for="">Tên sản phẩm</label>
+                <input type="text" formControlName="name" class="form-control" required>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                    <div *ngIf="name.errors.required">
+                        Vui lòng điền tên.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                        Tên phải dài ít nhất 4 ký tự.
+                    </div>
+                    <div *ngIf="name.errors.maxlength">
+                        Tên phải dài nhiều nhất 40 ký tự.
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="">Ảnh danh mục</label>
-            <input type="text" [formControl]="product.image" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Giá</label>
-            <input type="text" [formControl]="product.price" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Nội dung</label>
-            <textarea [formControl]="product.detail" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">Số lượng</label>
-            <input type="text" [formControl]="product.amount" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Trạng thái</label>
-            <select [formControl]="product.status" class="form-control">
-                <option selected placeholder="True" >True</option>
-                <option value="1">False</option>
-            </select>
-        </div>
-        <div class="text-center">
-            <button type="button" (click)="saveProduct()" class="btn btn-sm btn-success">Lưu</button>
-            <a routerLink="/" class="btn btn-sm btn-danger">Hủy</a>
-        </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="product.value.image == ''" class="img-fluid">
+                    <img [src]="product.value.image" *ngIf="product.value.image != ''" class="img-fluid">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Ảnh danh mục</label>
+                <input type="text" formControlName="image" class="form-control" required>
+                <div *ngIf="image.invalid && (image.dirty || image.touched)" class="alert alert-danger">
+
+                    <div *ngIf="image.errors.required">
+                        Mời nhập ảnh.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Giá</label>
+                <input type="number" formControlName="price" class="form-control" required>
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+
+                    <div *ngIf="price.errors.required">
+                        Vui lòng điền giá.
+                    </div>
+                    <div *ngIf="price.errors.min">
+                        Giá phải lớn hơn 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Thông tin</label>
+                <textarea formControlName="detail" class="form-control" required></textarea>
+                <div *ngIf="detail.invalid && (detail.dirty || detail.touched)" class="alert alert-danger">
+
+                    <div *ngIf="detail.errors.required">
+                        Vui lòng điền nội dung.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Số lượng</label>
+                <input type="number" formControlName="amount" class="form-control" required>
+                <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert alert-danger">
+
+                    <div *ngIf="amount.errors.required">
+                        Vui lòng điền số lượng.
+                    </div>
+                    <div *ngIf="amount.errors.min">
+                        Giá phải lớn hơn 0.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Trạng thái</label>
+                <select class="browser-default custom-select custom-select-lg" formControlName="status">
+                    <option selected value="true">True</option>
+                    <option value="false">false</option>
+                  </select>
+            </div>
+            <div class="text-center">
+                <a routeLink="/" class="btn btn-sm btn-danger mx-1">Hủy</a>
+                <button [disabled]="product.invalid" type="button" (click)="saveProduct()" class="btn btn-sm btn-success mx-1">Lưu</button>
+
+            </div>
+        </form>
     </div>
-</div>
-<div>
-    {{product.name.value | json}} {{product.image.value | json}}
 </div>

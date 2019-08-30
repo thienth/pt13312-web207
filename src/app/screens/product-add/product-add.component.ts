@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } 
     from '@angular/router';
 import { ProductsService } from '../../services/products.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -18,39 +18,103 @@ export class ProductAddComponent implements OnInit {
     private router: Router
   ) { }
   cateId: string;
-  product = {
-    name: new FormControl(''),
-    image: new FormControl(''),
-    price: new FormControl(''),
-    detail: new FormControl(''),
-    amount: new FormControl(''),
-    status: new FormControl(false),
-  };
+  product = new FormGroup({
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(40)
+    ]),
+    image: new FormControl('',[
+      Validators.required
+    ]),
+    price: new FormControl('',[
+      Validators.required,
+      Validators.min(0)
+    ]),
+    detail: new FormControl('',[
+      Validators.required
+    ]),
+    amount: new FormControl('',[
+      Validators.required,
+      Validators.min(0)
+      
+    ]), 
+    status:new FormControl(''),
+
+    cate_id:new FormControl('')
+  });
+  get name() { return this.product.get('name'); }
+  get image() { return this.product.get('image'); }
+  get price() { return this.product.get('price'); }
+
+  get detail() { return this.product.get('detail'); }
+
+  get amount() { return this.product.get('amount'); }
+  //get status() { return this.product.get('status'); }
   ngOnInit() {
     this.cateId = this.route.snapshot.params.cateId;
+    this.product.setValue({
+      name:'',
+      image:'',
+      price:'',
+      detail:'',
+      amount:'',
+      status:'',
+      cate_id: this.cateId,
+    })
+   
   }
-  saveProduct() {
-    const sendData = {
-      name: this.product.name.value,
-      image: this.product.image.value,
-      price: this.product.price.value,
-      detail: this.product.detail.value,
-      amount: this.product.amount.value,
-      status: this.product.status.value,
-      cate_id: this.cateId
-    };
-    this.productService.addProduct(sendData)
+
+      saveProduct() {
+        console.log(this.product.value);
+         if(this.product.valid){
+    this.productService.addProduct( this.product.value)
       .subscribe(data => {
-        this.product = {
-          name: new FormControl(''),
-          image: new FormControl(''),
-          price: new FormControl(''),
-          detail: new FormControl(''),
-          amount: new FormControl(''),
-          status: new FormControl(''),
-        };
-        this.router.navigate(['/']);
+        
+        this.router.navigate([`/category/${this.cateId}`]);
       });
   }
+}
+  
+  // constructor(
+  //   private productService: ProductsService,
+  //   private route: ActivatedRoute,
+  //   private router: Router
+  // ) { }
+  // cateId: string;
+  // product = {
+  //   name: new FormControl(''),
+  //   image: new FormControl(''),
+  //   price: new FormControl(''),
+  //   detail: new FormControl(''),
+  //   amount: new FormControl(''),
+  //   status: new FormControl(''),
+  // };
+  // ngOnInit() {
+  //   this.cateId = this.route.snapshot.params.cateId;
+  // }
+  // saveProduct() {
+  //   const sendData = {
+  //     name: this.product.name.value,
+  //     image: this.product.image.value,
+  //     price: this.product.price.value,
+  //     detail: this.product.detail.value,
+  //     amount: this.product.amount.value,
+  //     status: this.product.status.value,
+  //     cate_id: this.cateId
+  //   };
+  //   this.productService.addProduct(sendData)
+  //     .subscribe(data => {
+  //       this.product = {
+  //         name: new FormControl(''),
+  //         image: new FormControl(''),
+  //         price: new FormControl(''),
+  //         detail: new FormControl(''),
+  //         amount: new FormControl(''),
+  //         status: new FormControl(''),
+  //       };
+  //       this.router.navigate(['/']);
+  //     });
+  // }
 
 }
