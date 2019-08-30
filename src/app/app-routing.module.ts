@@ -15,9 +15,6 @@ import { ProductEditComponent }
 		from './screens/product-edit/product-edit.component';
 
 
-
-
-
 const routes: Routes = [
 	{
 		path: "",

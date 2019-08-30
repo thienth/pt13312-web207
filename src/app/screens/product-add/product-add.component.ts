@@ -37,18 +37,16 @@ export class ProductAddComponent implements OnInit {
     amount: new FormControl('',[
       Validators.required,
       Validators.min(0)
-      
     ]), 
     status:new FormControl(''),
 
     cate_id:new FormControl('')
   });
+
   get name() { return this.product.get('name'); }
   get image() { return this.product.get('image'); }
   get price() { return this.product.get('price'); }
-
   get detail() { return this.product.get('detail'); }
-
   get amount() { return this.product.get('amount'); }
   //get status() { return this.product.get('status'); }
   ngOnInit() {
@@ -61,60 +59,15 @@ export class ProductAddComponent implements OnInit {
       amount:'',
       status:'',
       cate_id: this.cateId,
-    })
-   
+    }) 
   }
-
       saveProduct() {
         console.log(this.product.value);
          if(this.product.valid){
-    this.productService.addProduct( this.product.value)
-      .subscribe(data => {
-        
-        this.router.navigate([`/category/${this.cateId}`]);
-      });
-  }
-}
-  
-  // constructor(
-  //   private productService: ProductsService,
-  //   private route: ActivatedRoute,
-  //   private router: Router
-  // ) { }
-  // cateId: string;
-  // product = {
-  //   name: new FormControl(''),
-  //   image: new FormControl(''),
-  //   price: new FormControl(''),
-  //   detail: new FormControl(''),
-  //   amount: new FormControl(''),
-  //   status: new FormControl(''),
-  // };
-  // ngOnInit() {
-  //   this.cateId = this.route.snapshot.params.cateId;
-  // }
-  // saveProduct() {
-  //   const sendData = {
-  //     name: this.product.name.value,
-  //     image: this.product.image.value,
-  //     price: this.product.price.value,
-  //     detail: this.product.detail.value,
-  //     amount: this.product.amount.value,
-  //     status: this.product.status.value,
-  //     cate_id: this.cateId
-  //   };
-  //   this.productService.addProduct(sendData)
-  //     .subscribe(data => {
-  //       this.product = {
-  //         name: new FormControl(''),
-  //         image: new FormControl(''),
-  //         price: new FormControl(''),
-  //         detail: new FormControl(''),
-  //         amount: new FormControl(''),
-  //         status: new FormControl(''),
-  //       };
-  //       this.router.navigate(['/']);
-  //     });
-  // }
-
+                this.productService.addProduct( this.product.value)
+                .subscribe(data => {
+                this.router.navigate([`/category/${this.cateId}`]);
+                });
+          }
+      }
 }

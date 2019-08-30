@@ -80,9 +80,9 @@
                   </select>
             </div>
             <div class="text-center">
-                <a routeLink="/" class="btn btn-sm btn-danger mx-1">Hủy</a>
-                <button [disabled]="product.invalid" type="button" (click)="saveProduct()" class="btn btn-sm btn-success mx-1">Lưu</button>
 
+                <button [disabled]="product.invalid" type="button" (click)="saveProduct()" class="btn btn-sm btn-success mx-1">Lưu</button>
+                <a routerLink="/category/{{cateId}}" class="btn btn-sm btn-danger mx-1">Hủy</a>
             </div>
         </form>
     </div>

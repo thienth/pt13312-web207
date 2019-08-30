@@ -8,7 +8,6 @@
                 <label for="">Tên sản phẩm</label>
                 <input type="text" formControlName="name" class="form-control" required>
                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-
                     <div *ngIf="name.errors.required">
                         Vui lòng điền tên.
                     </div>
@@ -27,7 +26,6 @@
                 <div class="col-12 text-center">
                     <img src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png" *ngIf="productForm.value.image == ''" class="img-fluid">
                     <img [src]="productForm.value.image" *ngIf="productForm.value.image != ''" class="img-fluid">
-
                 </div>
             </div>
             <div class="form-group">
@@ -67,7 +65,6 @@
                 <label for="">Số lượng</label>
                 <input type="number" formControlName="amount" class="form-control" required>
                 <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert alert-danger">
-
                     <div *ngIf="amount.errors.required">
                         Vui lòng điền số lượng.
                     </div>
@@ -86,13 +83,10 @@
                 </div>
             </div>
             <div class="text-center">
-                <a routeLink="/" class="btn btn-sm btn-danger mx-1">Hủy</a>
+                <a routerLink="/category/{{cateId}}" class="btn btn-sm btn-danger mx-1">Hủy</a>
                 <button [disabled]="productForm.invalid" type="button" (click)="saveProduct()" class="btn btn-sm btn-success mx-1">Lưu</button>
 
             </div>
         </form>
     </div>
-</div>
-<div>
-    {{productForm.name.value | json}} {{productForm.image.value | json}}
 </div>
